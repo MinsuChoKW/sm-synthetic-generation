@@ -22,7 +22,7 @@ shared.
 │   ├── screening.py           # chi-square + Cramér's V + ASR + Bonferroni FWER
 │   └── run_experiments.py     # runs the three experiments, writes results/
 ├── data/
-│   └── example_synthetic.csv  # one small generated snapshot (illustrative)
+    └── example_synthetic.csv  # one small generated snapshot (illustrative)
 ```
 
 ## Requirements
