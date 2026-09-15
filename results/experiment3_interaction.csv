@@ -1,0 +1,5 @@
+node,tested_by,n_datasets,detected,detection_rate,mean_cramers_v,mean_cell_recovery
+single-step control signal (s=0.70),per-step screen,20,20,1.0,0.7009330872029182,1.0
+interaction step A alone,per-step screen,20,0,0.0,0.12371098118611572,0.0
+interaction step B alone,per-step screen,20,0,0.0,0.12257749362155441,0.0
+joint step-pair node (A x B),joint-node screen,20,20,1.0,1.0,0.9470000000000003
