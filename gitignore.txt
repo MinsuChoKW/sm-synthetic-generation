@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Generated outputs (recreated by src/run_experiments.py)
+results/
+data/*.csv
+
+# OS / editor cruft
+.DS_Store
+__MACOSX/
+.idea/
+.vscode/
