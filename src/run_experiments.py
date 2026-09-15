@@ -249,7 +249,7 @@ def write_example_snapshot(base_seed: int) -> str:
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__.split("\n")[2])
+    parser = argparse.ArgumentParser(description="Run the synthetic benchmark experiments (ground-truth, non-ideal, interaction).")
     parser.add_argument("--reps", type=int, default=REPS,
                         help="datasets per condition (default: %(default)s)")
     parser.add_argument("--seed", type=int, default=BASE_SEED,
