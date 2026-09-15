@@ -14,7 +14,7 @@ shared.
 ```
 .
 ├── README.md
-├── LICENSE                    # (choose per institutional policy)
+├── LICENSE                   
 ├── requirements.txt
 ├── .gitignore
 ├── src/
@@ -23,7 +23,6 @@ shared.
 │   └── run_experiments.py     # runs the three experiments, writes results/
 ├── data/
 │   └── example_synthetic.csv  # one small generated snapshot (illustrative)
-└── results/                   # tables written by run_experiments.py
 ```
 
 ## Requirements
