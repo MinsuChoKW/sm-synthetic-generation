@@ -9,26 +9,6 @@ No production, fab, equipment, or metrology data is included, and none is requir
 to run anything here. The real case-study data are proprietary and cannot be
 shared.
 
-The synthetic benchmarks reproduce the ground-truth, robustness, and
-interaction-effect analyses reported in Section 4.3.3 of the paper — i.e. that the
-ASR + FWER screening–attribution pipeline recovers planted associations, controls
-false positives under non-ideal conditions, and (by construction) misses purely
-interaction-driven signals that a joint step-pair node recovers.
-
-## What is and isn't here
-
-Included (all synthetic):
-- generation of synthetic routing data with planted step–equipment–class signals;
-- the screening–attribution core (chi-square screen, Cramér's V gate, adjusted
-  standardized residuals, Bonferroni FWER);
-- the three synthetic experiments: signal-strength ground truth, non-ideal
-  conditions (correlated routing, weak signal, missing data), and the
-  single-step-vs-interaction test.
-
-Not included (depends on proprietary data, cannot be released):
-- the real case-study analysis, the τ_V sweep, the temporal splits, and the
-  STEP_053 contemporaneous-cohort analysis, which all run on the real event log.
-
 ## Repository layout
 
 ```
@@ -101,39 +81,6 @@ across steps and equipment marginals uneven; the line factor is drawn
 independently of the class, so it is a pure nuisance factor. *Weak signal* lowers
 *s*, and *missing data* deletes a fraction of the (wafer, step) records.
 
-## Result → paper mapping
-
-| Script output | Paper element |
-|---|---|
-| `results/experiment1_signal_strength.csv` | Table (synthetic validation), upper block |
-| `results/experiment2_non_ideal.csv` | Table (synthetic validation), lower block |
-| `results/experiment3_interaction.csv` | Interaction paragraph, Section 4.3.3 |
-
-Headline numbers, 20 datasets per condition, base seed 20260914:
-
-- **Ground truth.** Every planted step is recovered and every planted cell
-  attributed (sensitivity = recovery = 1.00) at *s* = 0.50, 0.70, 0.90, with a
-  null-step false-positive rate of 0.000. At *s* = 0.30 — exactly on the gate —
-  recovery is partial (0.86). The `step_sensitivity_chi2` column shows what the
-  gate buys: the chi-square screen alone finds every planted step at every *s*,
-  but flags ≈ α (0.056) of the null steps; the effect-size gate drives that to
-  zero.
-- **Non-ideal conditions.** Sensitivity and cell recovery stay at 1.00 under
-  ρ = 0.60 and ρ = 0.85, under weak signals *s* = 0.45 and 0.35, under 20 % and
-  40 % missingness, and at 0.99 for the combined condition
-  (ρ = 0.60, *s* = 0.35, 20 % missing). The null-step false-positive rate is
-  0.000 throughout, i.e. at or below α. The one condition that is not recovered
-  is the very weak signal *s* = 0.25, which falls below the gate (0.10) — the
-  intended behaviour of an effect-size threshold.
-- **Interaction.** The single-step control signal is detected in 20/20 datasets.
-  The two interaction steps, whose marginal class distributions are uniform by
-  construction, are detected in 0/20 by the per-step screen (mean V ≈ 0.12).
-  Collapsing the two steps into a joint step-pair node recovers the signal in
-  20/20 datasets at V = 1.00.
-
-Seeds are fixed so the reported numbers regenerate deterministically. Small
-differences (< a rounding unit) may arise across NumPy/SciPy versions; the pinned
-versions in `requirements.txt` reproduce the values above.
 
 ## Notes
 
