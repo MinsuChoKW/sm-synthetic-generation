@@ -32,17 +32,6 @@ the effect-size gate tau_V = 0.30 is the natural counterpart of a signal of
 strength 0.30.  A perfectly deterministic routing signature (signal = 1) gives
 V = 1.0, the value observed at the photolithography steps of the case study.
 
-Non-ideal conditions
---------------------
-correlated routing : each wafer carries a latent "line" factor with a fixed
-    per-line preference over equipment nodes, shared across all steps.  With
-    probability ``rho`` the background draw follows that preference instead of
-    being uniform, which makes routing correlated across steps and equipment
-    marginals uneven.  The line factor is drawn independently of the class, so
-    it is a pure nuisance factor and must not create class associations.
-weak signal : lower ``signal``.
-missing data : a fraction ``missing`` of the (wafer, step) records is deleted
-    at random, which shrinks n per step and produces sparse cells.
 """
 
 from dataclasses import dataclass, field

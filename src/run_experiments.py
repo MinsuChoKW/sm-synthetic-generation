@@ -1,24 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-run_experiments.py
-==================
-Runs the three synthetic experiments of Section 4.3.3 and writes one result
-table per experiment to ``results/``.
-
-  1. Signal-strength ground truth  -> results/experiment1_signal_strength.csv
-  2. Non-ideal conditions          -> results/experiment2_non_ideal.csv
-  3. Single step vs interaction    -> results/experiment3_interaction.csv
-
-A small illustrative snapshot of the generator's output is also written to
-``data/example_synthetic.csv``.
-
-Every dataset is produced by a seeded generator (base seed 20260914), and the
-random stream is laid out so that datasets with the same replicate index are
-*paired* across conditions: the same wafers, the same class assignment and the
-same planted steps, differing only in the condition under test.
-
-Usage:  python src/run_experiments.py [--reps 20] [--seed 20260914]
-"""
 
 import argparse
 import os

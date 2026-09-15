@@ -1,35 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-screening.py
-============
-Screening-attribution core for route-aware attribution of multi-class overlay
-patterns.
 
-The pipeline is applied independently to every process step:
-
-  1. Build the (equipment x class) contingency table for the step.
-  2. Omnibus chi-square test of independence (no continuity correction).
-     Steps with fewer than two equipment nodes or two classes are not testable
-     and are skipped.
-  3. Effect-size gate.  Cramer's V = sqrt(chi2 / (n * min(r-1, k-1))) must
-     reach tau_V; the gate is what separates a statistically significant but
-     practically irrelevant step from a genuine routing signature.
-  4. For steps that pass both the chi-square screen and the effect-size gate,
-     compute an adjusted standardized residual (ASR) per cell.  Cells that are
-     sparse in *both* the expected and the observed count (< MIN_COUNT) are
-     excluded from the residual analysis.
-  5. Cell-wise Bonferroni FWER control: the per-step family is the r * k cells
-     of that step's table, so the two-sided critical value is
-     z_crit = Phi^-1(1 - alpha / (2 * r * k)).  Only positive associations
-     (ASR > z_crit) are attributed.
-  6. ASR_REPORT is the reporting threshold used for the compressed tables in
-     the paper; it is a presentation cut applied on top of the FWER gate, not a
-     second inference step.
-
-This module has no dependency on any particular data source: it consumes a long
-frame with one row per (wafer, step) visit and the columns
-STEP_ID / EQP_ID / CLASS.
-"""
 
 from dataclasses import dataclass
 from typing import Dict, Iterator, List, Optional, Sequence, Tuple
